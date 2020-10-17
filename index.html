@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gyro Test 1</title>
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0px;
+
+		}
+		h4{
+			display: inline-block;
+		}
+		span{
+			display: inline-block;
+			font-weight: 800;
+			font-size: 1rem;
+
+		}
+	</style>
+</head>
+<body>
+
+<h4>Angularvelocity around the X-axis:</h4>
+<span id="x"></span>
+</br>
+<h4>Angularvelocity around the Y-axis:</h4>
+<span id="y"></span>
+</br>
+<h4>Angularvelocity around the Z-axis:</h4>
+<span id="z"></span>
+
+
+<script type="text/javascript">
+	
+	let sensor = new Gyroscope();
+	var x = document.getElementById("x");
+	var y = document.getElementById("y");
+	var z = document.getElementById("z");
+	x.innerHTML="Null";
+	y.innerHTML="Null";
+	z.innerHTML="Null";
+sensor.start();
+
+
+sensor.onreading = () => {
+	x.innerHTML=sensor.x;
+	y.innerHTML=sensor.y;
+	z.innerHTML=sensor.z;
+  /*  alert("Angularvelocity around the X-axis " + sensor.x);
+    alert("Angular velocity around the Y-axis " + sensor.y);
+    alert("Angular velocity around the Z-axis " + sensor.z);*/
+};
+
+sensor.onerror = event => console.log(event.error.name, event.error.message);
+
+</script>
+</body>
+</html>
